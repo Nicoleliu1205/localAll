@@ -1,3 +1,9 @@
+import sys
+import os
+
+from Common.loggerController import log
+
+
 import time
 import urllib
 from datetime import datetime
@@ -13,7 +19,14 @@ from selenium.webdriver.chrome.options import Options
 # 规避检测
 from selenium.webdriver import ChromeOptions
 
-
+log.info("已经插入失败4条数据，退出执行脚本。请检查！")
+import re
+mystr='https://discord.gg/MogulProductions'
+#print(mystr[20:])
+my=os.path.split(mystr)
+print(my[1])
+mystr2="3.7 K"
+#print(float(mystr2[0:-2])*1000)
 
 '''
 #本地页面
@@ -43,32 +56,6 @@ driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
   "source": js
 })
 '''
-url="https://www.nftdropscalendar.com/upcoming-nfts"
-loading="/html/body/div/div[2]/div[2]/div[1]/div[5]/a/div"
-chrome_options=webdriver.ChromeOptions()
-#实现无可视化界面操作
-chrome_options = Options()
-chrome_options.add_argument('--headless') #浏览器不提供可视化页面. linux下如果系统不支持可视化不加这条会启动失败
-chrome_options.add_argument('--disable-gpu') #谷歌文档提到需要加上这个属性来规避bug
-chrome_options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36')
-#option=webdriver.ChromeOptions()
-chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-driver=webdriver.Chrome(options=chrome_options)
-
-driver.get(url)
-time.sleep(3)
-driver.find_element("xpath",loading).click()
-time.sleep(3)
-driver.find_element("xpath",loading).click()
-time.sleep(3)
-result=driver.page_source
-bs= BeautifulSoup(result,"html.parser")
-driver.close()
-i = 1
-for element in bs.find_all(name='a',attrs='link-block-18 w-inline-block'):
-    url_temp="https://www.nftdropscalendar.com"+element['href']
-    print(" The  "+str(i)+" element is :",url_temp)
-    i = i + 1
 
 
 
