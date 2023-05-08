@@ -34,7 +34,7 @@ Python-重构自动化-数据驱动
 
 #### 合约
 
-NFT智能合约特性，remix，B-智能合约测试-solidity测试框架；nodejs
+NFT智能合约特性，remix，B-智能合约测试-solidity测试框架；nodejs本地搭链，发布合约
 
 #### 线上服务监控
 
