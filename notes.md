@@ -12,6 +12,7 @@ adb shell am start com.viide.repair/.MainActivity filter eafbc70
 adb shell am start  com.android.settings/com.android.settings.Settings
 adb pull /data/data/... C:\Users\EDY\Desktop
 adb shell pm list packages -3
+
 #### 自动化
 
 设置WiFi
@@ -31,7 +32,6 @@ Python-重构自动化-数据驱动
 
 工作规范文档化，流程化
 
-
 #### 合约
 
 NFT智能合约特性，remix，B-智能合约测试-solidity测试框架；nodejs本地搭链，发布合约
@@ -43,14 +43,21 @@ NFT智能合约特性，remix，B-智能合约测试-solidity测试框架；node
 ### 4、一些工具
 
 [plantUML](https://plantuml.com/zh/starting)（时序图、用例图、类图、组件图、部署图、状态图、框架图、甘特图……）
-[docker](https://www.coonote.com/docker/docker-common-commands.html)
+[docker](https://www.coonote.com/docker/docker-common-commands.html)——搭建服务和测试运行环境   
+
+selenium   
+
+testNG   
 
 ### 5、经验累积
 
 1. UI自动化
-   先编写基本对齐、大小写、标点符号等规范；
+   规范类：对齐、大小写、标点符号、中英文字体等；
+   提示类：错误提示
+   输入类：正常值、边界值、错误值、null、不输入、异常类型、sql语句
 2. 接口自动化
    数据驱动&过程驱动
+   接口自动化筛选标准
 3. 单元测试
 4. TDD
 5. DevOPS
