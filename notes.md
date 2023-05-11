@@ -42,12 +42,12 @@ NFT智能合约特性，remix，B-智能合约测试-solidity测试框架；node
 
 ### 4、一些工具
 
-[plantUML](https://plantuml.com/zh/starting)（时序图、用例图、类图、组件图、部署图、状态图、框架图、甘特图……）
-[docker](https://www.coonote.com/docker/docker-common-commands.html)——搭建服务和测试运行环境   
+[plantUML](https://plantuml.com/zh/starting)（时序图、用例图、类图、组件图、部署图、状态图、框架图、甘特图……）  
+[docker](https://www.coonote.com/docker/docker-common-commands.html)——搭建服务和测试运行环境
 
-selenium   
+selenium
 
-testNG   
+testNG
 
 ### 5、经验累积
 
