@@ -13,15 +13,16 @@ adb shell am start  com.android.settings/com.android.settings.Settings
 adb pull /data/data/... C:\Users\EDY\Desktop
 adb shell pm list packages -3
 
-#### 自动化
+#### 压力测试
 
-设置WiFi
-adb shell
+Jmeter 对接口  
+Monkey对APP 进行压力测试。（正常、crash、ANR）   
+     adb  shell  monkey –p  sogou.mobile.explorer  –v 1000 
 
-### 2、接口自动化框架
+### 2、自动化测试框架
 
-#### rest-assured+allure+testNg，requests+pytest+allure（采用），postman+Newman
-
+#### rest-assured+allure+testNg，requests+pytest+allure（采用），postman+Newman，robotframework,
+![](.notes_images/ec201a28.png)     
 数据驱动（高级参数化区别）、关键字驱动（动作级）、page object model、Python-重构自动化-数据驱动
 
 pipline-拉代码、本地搭环境、本地运行服务、启动脚本代码、保存报告、mock服务
@@ -33,7 +34,11 @@ pipline-拉代码、本地搭环境、本地运行服务、启动脚本代码、
 
 代码上线流程工具（上传Git、打包编译、sonar、smoke、发布stage测试环境）；
 
+Python JSON库：         
+![](.notes_images/876a2873.png)
 
+gradle
+docker
 
 
 ### 3、其他
@@ -99,4 +104,7 @@ testNG
 8. DevOPS
 9. ![](.notes_images/27999197.png)POM(page object model)
 
-####
+### 关于敏捷的一些信息
+##### [Spotify敏捷模式三部曲](https://www.leangoo.com/14003.html)
+##### 四种流行的敏捷开发方法：Scrum、Kanban、Lean和XP
+
