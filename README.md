@@ -43,7 +43,7 @@ JAVA版本
 </br>同类的有WireMock
 </br>八、Hamcrest——断言库
 </br>特点：丰富的匹配器，易于维护
-</br>九、Jenkins——CICD工具
+</br>九、Jenkins——CI\CD工具
 </br>特点：流水线构建
 </br>十、JMeter——性能测试、负载测试
 </br>特点：多场景多用户
@@ -65,4 +65,6 @@ JAVA版本
 </br>2、自动化报告生成，
 </br>
 </br>其他框架工具
-</br>Puppeteer 和 Jest 经常一起使用，可以实现强大的端到端测试。Jest 提供了测试框架，Puppeteer 提供了浏览器自动化能力。Puppeteer 负责模拟用户操作，Jest 负责组织和运行测试用例
+</br>Puppeteer 和 Jest 经常一起使用，可以实现强大的端到端测试，测试react程序。
+</br>Puppeteer 提供了浏览器自动化能力,负责模拟用户操作。是一个 Headless Chrome Node API，它控制 Chrome 浏览器的版本。
+</br>Jest 提供了测试框架，负责组织和运行测试用例。 
