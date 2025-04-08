@@ -1,0 +1,45 @@
+# 用户相关测试数据
+users:
+  valid_user:
+    username: "test_user"
+    password: "test_password"
+    email: "test@example.com"
+  invalid_user:
+    username: "invalid_user"
+    password: "wrong_password"
+    email: "invalid@example.com"
+
+# API 测试数据
+api_test_data:
+  create_user:
+    endpoint: "/users"
+    method: "POST"
+    request_body:
+      username: "new_user"
+      password: "new_password"
+      email: "new@example.com"
+    expected_status: 201
+    expected_response:
+      message: "User created successfully"
+  
+  get_user:
+    endpoint: "/users/{user_id}"
+    method: "GET"
+    expected_status: 200
+    expected_response:
+      username: "test_user"
+      email: "test@example.com"
+  
+  update_user:
+    endpoint: "/users/{user_id}"
+    method: "PUT"
+    request_body:
+      email: "updated@example.com"
+    expected_status: 200
+    expected_response:
+      message: "User updated successfully"
+  
+  delete_user:
+    endpoint: "/users/{user_id}"
+    method: "DELETE"
+    expected_status: 204 

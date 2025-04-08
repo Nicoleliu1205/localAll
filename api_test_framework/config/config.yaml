@@ -1,0 +1,23 @@
+# 测试环境配置
+environments:
+  dev:
+    base_url: "http://dev.example.com/api"
+    timeout: 10
+  test:
+    base_url: "http://test.example.com/api"
+    timeout: 10
+  prod:
+    base_url: "http://api.example.com"
+    timeout: 10
+
+# 测试报告配置
+report:
+  output_dir: "reports"
+  html_report: true
+  xml_report: false
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/test.log" 
