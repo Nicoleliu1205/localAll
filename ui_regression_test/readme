@@ -1,0 +1,55 @@
+1. 环境准备
+确保你已经安装了项目依赖（selenium、pytest等）：
+bash
+pip install -r requirements.txt
+配置好 ChromeDriver，版本与浏览器匹配，且在系统PATH或指定路径可用。
+
+2. 修改配置
+在test_scan_site.py 和 test_example_cases.py 中，把BASE_URL 改成你实际需要测试的网站地址，例如：
+python
+BASE_URL = "https://your-target-website.com"
+
+3. 生成基准截图（第一次运行）
+第一次运行时，没基准图，框架会自动扫描网站链接并为所有页面自动生成基准截图（你前面实现的“一次运行自动保存基准截图”的版本）。
+
+执行命令：
+
+bash
+pytest test_scan_site.py
+这一步会自动爬取页面、逐个打开、截图保存在 screenshots/baseline/。
+期间会看到 [Baseline created] 日志，表示基准图已生成。
+
+4. 正式回归测试（后续运行）
+有了基准图之后，测试会对比新截图与基准截图，检测视觉回归和JS报错。
+
+执行命令：
+bash
+pytest test_scan_site.py
+如果没变化，测试全部通过。
+发现UI差异或报错时，测试会失败并提示具体问题。
+
+5. 单独示例测试
+你也可以运行示例测试文件test_example_cases.py来做单独页面的UI和JS错误检测，如主页和登录页：
+bash
+pytest test_example_cases.py
+
+6. 可选：生成测试报告
+想要生成HTML格式的测试报告，执行：
+bash
+pytest --html=report.html
+
+7. 其他辅助操作建议
+自动更新基准图：如果UI确认修改合理，需要自动覆盖基准图时，使用：
+bash
+UPDATE_BASELINE=true pytest test_scan_site.py
+限制爬取深度：修改LinkScanner中的max_depth，控制扫描页数。
+
+清理缓存截图：删除screenshots/current/和screenshots/baseline/，重新生成。
+
+总结
+阶段	运行命令	说明
+第一次基准图生成	pytest test_scan_site.py	自动爬取全站，自动保存基准截图
+日常回归测试	pytest test_scan_site.py	视觉回归比对+JS错误检查
+示例单页面测试	pytest test_example_cases.py	针对首页、登录页做快速示例测试
+生成报告	pytest --html=report.html	生成测试的HTML报告
+基准图更新	UPDATE_BASELINE=true pytest test_scan_site.py	允许自动覆盖基准图（确认UI变更后用）
