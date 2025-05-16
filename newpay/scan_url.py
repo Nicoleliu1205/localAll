@@ -7,6 +7,7 @@ from urllib.parse import urljoin, urlparse, urlunparse
 import time
 import json
 from bs4 import BeautifulSoup
+import re
 
 results = []
 skipped_pages = {}  # 使用字典记录跳过的页面及其原因
@@ -349,7 +350,7 @@ if __name__ == "__main__":
             print(f"- URL: {error['url']} - Error: {error['error']}")
 
     # 保存结果到文件
-    with open("scan_results.json", "w", encoding='utf-8') as f:
+    with open("./scan_results.json", "w", encoding='utf-8') as f:
         json.dump({
             "successful_pages": list(successful_pages),
             "skipped_pages": skipped_pages,

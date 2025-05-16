@@ -9,7 +9,7 @@ from utils.link_scanner import LinkScanner
 from utils.image_diff import compare_images
 from utils.logger import get_logger
 
-BASE_URL = "https://newpay.la/en"
+BASE_URL = "https://newpay.la"
 SCREENSHOT_BASE = "screenshots/baseline"
 SCREENSHOT_CURRENT = "screenshots/current"
 
@@ -28,7 +28,7 @@ def all_links(driver):
     使用 LinkScanner 扫描 BASE_URL 下的所有链接，包括 iframe 和动态加载的链接。
     """
     logger.info(f"Scanning all links under {BASE_URL}")
-    scanner = LinkScanner(BASE_URL, driver.driver, max_depth=3)  # 根据需要调整 max_depth
+    scanner = LinkScanner(BASE_URL, driver.driver, max_depth=10)  # 根据需要调整 max_depth
     scanner.scan()
     logger.info(f"Found {len(scanner.links)} links: {scanner.links}")
     return list(scanner.links)
@@ -41,7 +41,7 @@ def pytest_generate_tests(metafunc):
         # 从 all_links fixture 获取链接
         links = metafunc.config.cache.get("all_links", None)
         if not links:
-            scanner = LinkScanner(BASE_URL, max_depth=2)
+            scanner = LinkScanner(BASE_URL, max_depth=10)
             links = scanner.scan()
             metafunc.config.cache.set("all_links", links)
         metafunc.parametrize("url", links)
@@ -95,7 +95,22 @@ def test_pages_js_errors(driver, url):
     wait_for_page_load(driver, timeout=30)
 
     errors = driver.get_console_errors()
-    logger.info(f"Testing URL: {url}")
-    logger.info(f"Page source length: {len(driver.driver.page_source)}")
-    logger.info(f"Console errors: {errors}")
+    ignored_errors = ["Failed to fetch", "Deprecated API usage"]
+    critical_errors = [
+        error for error in errors if not any(ignored in error["message"] for ignored in ignored_errors)
+    ]
 
+    if critical_errors:
+        logger.error(f"Critical JS errors found on {url}: {critical_errors}")
+    else:
+        logger.info(f"No critical JS errors found on {url}")
+
+def test_pages_http_status(driver, url):
+    driver.open(url)
+    wait_for_page_load(driver)
+
+    status_code = driver.get_status_code()
+    logger.info(f"Testing URL: {url}, Status Code: {status_code}")
+
+    assert status_code is not None, f"Failed to retrieve status code for {url}"
+    assert 200 <= status_code < 300, f"Non-success status code {status_code} for {url}"

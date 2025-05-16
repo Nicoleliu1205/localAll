@@ -28,6 +28,12 @@ pytest test_scan_site.py
 如果没变化，测试全部通过。
 发现UI差异或报错时，测试会失败并提示具体问题。
 
+日常回归测试：
+pytest test_scan_site.py
+
+- 检测页面是否有 404 错误或其他显示错误。
+- 忽略大多数 JS 错误，仅记录到日志中。
+
 5. 单独示例测试
 你也可以运行示例测试文件test_example_cases.py来做单独页面的UI和JS错误检测，如主页和登录页：
 bash
@@ -37,6 +43,12 @@ pytest test_example_cases.py
 想要生成HTML格式的测试报告，执行：
 bash
 pytest --html=report.html
+
+### 更新基准截图
+如果页面的 UI 发生了预期的变化，可以使用以下命令更新基准截图：
+```bash
+UPDATE_BASELINE=true pytest test_scan_site.py
+```
 
 7. 其他辅助操作建议
 自动更新基准图：如果UI确认修改合理，需要自动覆盖基准图时，使用：
