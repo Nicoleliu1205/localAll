@@ -1,0 +1,38 @@
+appium:
+  server:
+    host: localhost
+    port: 4723
+
+android:
+  capabilities:    
+    platformName: "Android"
+    appium:automationName: "UiAutomator2"
+    appium:deviceName: "RF8M80JEMMJ"
+    appium:appPackage: "com.newpay.merchant"
+    appium:appActivity: "com.newpay.merchant.MainActivity"
+    appium:noReset: true
+    appium:fullReset: false
+    appium:autoGrantPermissions: true
+    appium:newCommandTimeout: 7200
+    appium:ignoreHiddenApiPolicyError: true
+    appium:dontStopAppOnReset: true
+    appium:skipDeviceInitialization: true
+    appium:ensureWebviewsHavePages: true
+    appium:nativeWebScreenshot: true
+    appium:connectHardwareKeyboard: true
+    
+framework:
+  implicit_wait: 10
+  explicit_wait: 15
+  retry_times: 3
+  screenshot_on_failure: true
+
+reporting:
+  screenshots_dir: "./reports/screenshots"
+  allure_results_dir: "./reports/allure-results"
+  html_report_dir: "./reports/html"
+
+logging:
+  level: INFO
+  file_path: "./reports/test_execution.log"
+
